@@ -19,3 +19,8 @@
     will-change: transform;
     cursor: pointer;
   }
+
+#game-clickable-area.active {
+    transform: scale(1.2);
+    transition: transform 0.1s;
+  }
