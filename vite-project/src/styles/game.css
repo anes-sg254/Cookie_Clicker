@@ -24,3 +24,52 @@
     transform: scale(1.2);
     transition: transform 0.1s;
   }
+
+
+#game {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.shop {
+  width: 250px;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-left: 2px solid #ccc;
+  height: 100vh; 
+  box-sizing: border-box;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+}
+
+
+.golden-cookie {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background-image: url('./golden-cookie.png'); /* Remplace par ton image */
+  background-size: cover;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.golden-cookie.fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}

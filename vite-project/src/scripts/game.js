@@ -1,6 +1,7 @@
 import { ClickableArea } from "./clickable-area";
 import "../styles/game.css"
 import { Shop } from "./shop.js";
+import { RandomSpawn } from "./random-spawn.js";
 
 export class Game {
   // Game Properties
@@ -18,6 +19,7 @@ export class Game {
   constructor(config) {
     this.cookies = config.cookies;
     this.gameElement = document.querySelector("#game");
+    this.spawn=new RandomSpawn(this.gameElement,()=>this.passiveGain,this.onclickgoldencookies)
 
     this.clickableArea = new ClickableArea(
       this.gameElement,
@@ -30,11 +32,17 @@ export class Game {
 
   // Lance le jeu
   start() {
+
     this.render();
+    this.spawn.startSpawning();
+   
+
+
 
     // Ajoute un gain passif toutes les secondes
     setInterval(() => {
       this.cookies += this.passiveGain;
+      console.log(this.passiveGain,this.cookies)
       window.requestAnimationFrame(() => {
         this.updateScore();
       });
@@ -58,7 +66,7 @@ export class Game {
     this.scoreElement.innerHTML = `
       <span>${this.cookies.toFixed(2)} cookies</span>
       <br />
-      <span>Passive gain: ${this.passiveGain} cookies/sec</span>
+      <span>Passive gain: ${this.passiveGain.toFixed(2)} cookies/sec</span>
     `;
   }
 
@@ -68,6 +76,13 @@ export class Game {
       this.updateScore();
     });
   };
+  onclickgoldencookies=(cookies)=> {
+    this.cookies+=cookies;
+    window.requestAnimationFrame(() => {
+      this.updateScore();
+    });
+
+  }
 
   onUpgradePurchase = (upgrade) => {
     if (this.cookies >= upgrade.price) {

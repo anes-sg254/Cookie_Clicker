@@ -9,7 +9,7 @@ document.querySelector("#app").innerHTML = `
 `;
 
 const game = new Game({
-  cookies: 1000,
+  cookies:0,
 });
 
 game.start();

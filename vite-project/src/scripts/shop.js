@@ -1,6 +1,6 @@
 export class Shop {
     constructor(gameElement, onUpgradePurchase) {
-      this.shopElement = document.createElement("section");
+      this.shopElement = document.createElement("aside");
       this.shopElement.id = "game-shop";
       this.upgrades = [];
       this.gameElement = gameElement;
